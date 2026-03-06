@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm init:*)",
+      "Bash(node:*)",
+      "Bash(brew install:*)",
+      "Bash(chmod 755:*)",
+      "Bash(npm install:*)",
+      "Bash(timeout 10 npm run:*)",
+      "Bash(git:*)"
+    ]
+  }
+}

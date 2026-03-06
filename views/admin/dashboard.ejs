@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="admin-header">
+    <h1>Admin Dashboard</h1>
+    <form method="GET" action="/admin/logout" style="display: inline;">
+      <button type="submit" class="btn btn-outline">Sign Out</button>
+    </form>
+  </div>
+
+  <div class="admin-stats">
+    <div class="stat-card">
+      <h3><%= posts.length %></h3>
+      <p>Total Posts</p>
+    </div>
+    <div class="stat-card">
+      <h3><%= posts.filter(p => p.published === 1).length %></h3>
+      <p>Published</p>
+    </div>
+    <div class="stat-card">
+      <h3><%= draftCount %></h3>
+      <p>Drafts</p>
+    </div>
+    <div class="stat-card">
+      <h3><%= subscriberCount %></h3>
+      <p>Subscribers</p>
+    </div>
+  </div>
+
+  <div class="admin-actions">
+    <a href="/blog/admin/new" class="btn btn-primary btn-large">+ Create New Post</a>
+    <a href="/admin/subscribers/export" class="btn btn-secondary">Download Subscriber List</a>
+  </div>
+
+  <h2>Posts</h2>
+
+  <% if (posts.length === 0) { %>
+    <p>No posts yet. <a href="/blog/admin/new">Create one</a>.</p>
+  <% } else { %>
+    <div class="admin-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% posts.forEach(post => { %>
+            <tr>
+              <td><strong><%= post.title %></strong></td>
+              <td><%= post.author_name %></td>
+              <td><span class="badge badge--<%= post.author_type %>">
+                <%= post.author_type === 'member' ? 'Member' : 'Caregiver' %>
+              </span></td>
+              <td>
+                <span class="badge <%= post.published === 1 ? 'badge--published' : 'badge--draft' %>">
+                  <%= post.published === 1 ? 'Published' : 'Draft' %>
+                </span>
+              </td>
+              <td><%= new Date(post.created_at).toLocaleDateString() %></td>
+              <td class="actions">
+                <a href="/blog/<%= post.slug %>" class="btn-icon" aria-label="View post">👁️</a>
+                <button class="btn-icon toggle-publish" data-id="<%= post.id %>" aria-label="Toggle publish status">🔄</button>
+                <button class="btn-icon delete-post" data-id="<%= post.id %>" aria-label="Delete post">🗑️</button>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</div>
+
+<script>
+document.querySelectorAll('.toggle-publish').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    if (confirm('Toggle publish status?')) {
+      try {
+        const response = await fetch(`/admin/posts/${btn.dataset.id}/toggle-publish`, {
+          method: 'POST'
+        });
+        const data = await response.json();
+        if (data.success) location.reload();
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
+    }
+  });
+});
+
+document.querySelectorAll('.delete-post').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    if (confirm('Delete this post permanently?')) {
+      try {
+        const response = await fetch(`/admin/posts/${btn.dataset.id}/delete`, {
+          method: 'POST'
+        });
+        const data = await response.json();
+        if (data.success) location.reload();
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
+    }
+  });
+});
+</script>

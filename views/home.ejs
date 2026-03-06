@@ -1,0 +1,114 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Welcome to BBBI</h1>
+    <p class="tagline">A Warm Community for Black Men Affected by Brain Injury</p>
+    <p class="mission">
+      We are a supportive community dedicated to celebrating resilience, sharing stories, and building connection
+      for Black men living with brain injury—and the caregivers who support them. Whether from stroke, accident,
+      illness, Alzheimer's, Parkinson's, or any other cause, your voice matters here.
+    </p>
+    <div class="hero-actions">
+      <a href="/blog" class="btn btn-primary">Read Stories</a>
+      <a href="#signup" class="btn btn-secondary">Join Our Community</a>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Stories -->
+<% if (featured.length > 0) { %>
+<section class="featured-stories">
+  <div class="container">
+    <h2>Featured Stories</h2>
+    <div class="posts-grid">
+      <% featured.forEach(post => { %>
+        <%- include('./partials/post-card', { post }) %>
+      <% }); %>
+    </div>
+    <div class="section-footer">
+      <a href="/blog" class="btn btn-outline">Read All Stories →</a>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- Sign-up Section -->
+<section id="signup" class="signup-section">
+  <div class="container">
+    <h2>Stay Connected</h2>
+    <p>Get Zoom meeting links, event updates, and support directly to your inbox.</p>
+
+    <form id="signupForm" class="signup-form" method="POST" action="/signup">
+      <div class="form-group">
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          aria-required="true"
+        >
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name (optional)</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="role">I am a... (optional)</label>
+          <select id="role" name="role">
+            <option value="">Not specified</option>
+            <option value="member">Person with brain injury</option>
+            <option value="caregiver">Caregiver</option>
+            <option value="ally">Ally</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-large">Sign Me Up</button>
+      <div id="signupMessage" class="signup-message"></div>
+    </form>
+  </div>
+</section>
+
+<script>
+document.getElementById('signupForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const messageEl = document.getElementById('signupMessage');
+
+  try {
+    const response = await fetch('/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: document.getElementById('email').value,
+        name: document.getElementById('name').value,
+        role: document.getElementById('role').value
+      })
+    });
+
+    const data = await response.json();
+    messageEl.innerHTML = '';
+
+    if (data.success) {
+      messageEl.className = 'signup-message success';
+      messageEl.textContent = data.message;
+      document.getElementById('signupForm').reset();
+    } else {
+      messageEl.className = 'signup-message error';
+      messageEl.textContent = data.message || 'An error occurred.';
+    }
+  } catch (err) {
+    messageEl.className = 'signup-message error';
+    messageEl.textContent = 'Network error. Please try again.';
+  }
+});
+</script>

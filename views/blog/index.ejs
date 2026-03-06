@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Stories & Updates</h1>
+  <p class="intro-text">
+    Discover inspiring stories from our community. Black men and caregivers sharing their journeys,
+    insights, and support.
+  </p>
+
+  <% if (posts.length === 0) { %>
+    <div class="empty-state">
+      <p>No stories yet. Check back soon!</p>
+    </div>
+  <% } else { %>
+    <div class="posts-grid">
+      <% posts.forEach(post => { %>
+        <%- include('../partials/post-card', { post }) %>
+      <% }); %>
+    </div>
+  <% } %>
+</div>

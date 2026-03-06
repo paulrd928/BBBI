@@ -1,0 +1,36 @@
+<article class="post-card">
+  <% if (post.video_url) { %>
+    <div class="post-card-media">
+      <video controls>
+        <source src="<%= post.video_url %>" type="video/mp4">
+      </video>
+    </div>
+  <% } %>
+
+  <div class="post-card-body">
+    <div class="post-card-meta">
+      <span class="badge badge--<%= post.author_type %>">
+        <%= post.author_type === 'member' ? 'Member' : 'Caregiver' %>
+      </span>
+      <span class="post-card-date">
+        <%= new Date(post.created_at).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        }) %>
+      </span>
+    </div>
+
+    <h3 class="post-card-title">
+      <a href="/blog/<%= post.slug %>"><%= post.title %></a>
+    </h3>
+
+    <p class="post-card-author">By <strong><%= post.author_name %></strong></p>
+
+    <p class="post-card-excerpt">
+      <%= post.content.substring(0, 150).replace(/<[^>]*>/g, '').trim() %>...
+    </p>
+
+    <a href="/blog/<%= post.slug %>" class="post-card-link">Read Full Story →</a>
+  </div>
+</article>

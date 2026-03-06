@@ -1,0 +1,85 @@
+<div class="container">
+  <h1>Create New Post</h1>
+
+  <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+    <div class="alert alert-error">
+      <ul>
+        <% errors.forEach(err => { %>
+          <li><%= err.msg %></li>
+        <% }); %>
+      </ul>
+    </div>
+  <% } %>
+
+  <form method="POST" enctype="multipart/form-data" class="post-form">
+    <div class="form-group">
+      <label for="title">Post Title <span class="required">*</span></label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        required
+        placeholder="e.g., My Journey to Recovery"
+      >
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="author_name">Your Name <span class="required">*</span></label>
+        <input
+          type="text"
+          id="author_name"
+          name="author_name"
+          required
+          placeholder="Full name"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="author_type">I am a... <span class="required">*</span></label>
+        <select id="author_type" name="author_type" required>
+          <option value="">Select...</option>
+          <option value="member">Person with brain injury</option>
+          <option value="caregiver">Caregiver</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Your Story <span class="required">*</span></label>
+      <textarea
+        id="content"
+        name="content"
+        rows="10"
+        required
+        placeholder="Share your thoughts, experiences, and insights..."
+      ></textarea>
+      <small>You can use basic HTML tags: &lt;p&gt;, &lt;br&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;a&gt;</small>
+    </div>
+
+    <div class="form-group">
+      <label for="video">Video Message (optional)</label>
+      <input
+        type="file"
+        id="video"
+        name="video"
+        accept="video/mp4,video/quicktime,video/webm,image/jpeg,image/png"
+      >
+      <small>Max 200MB. Formats: MP4, MOV, WebM, JPG, PNG</small>
+    </div>
+
+    <div class="form-group form-checkbox">
+      <input
+        type="checkbox"
+        id="publish"
+        name="publish"
+      >
+      <label for="publish">Publish immediately (uncheck to save as draft)</label>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Save Post</button>
+      <a href="/admin/dashboard" class="btn btn-outline">Cancel</a>
+    </div>
+  </form>
+</div>

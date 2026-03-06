@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>For Caregivers</h1>
+  <p class="intro-text">
+    Your voice matters. Caregivers play a vital role in our community. Share your experiences,
+    advice, and support with others who understand the caregiving journey.
+  </p>
+
+  <% if (posts.length === 0) { %>
+    <div class="empty-state">
+      <p>No caregiver stories yet. <a href="/admin/login">Share your story</a>.</p>
+    </div>
+  <% } else { %>
+    <div class="posts-grid">
+      <% posts.forEach(post => { %>
+        <%- include('./partials/post-card', { post }) %>
+      <% }); %>
+    </div>
+  <% } %>
+</div>
