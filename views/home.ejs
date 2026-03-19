@@ -1,25 +1,173 @@
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>Welcome to BBBI</h1>
-    <p class="tagline">A Warm Community for Black Men Affected by Brain Injury</p>
-    <p class="mission">
-      We are a supportive community dedicated to celebrating resilience, sharing stories, and building connection
-      for Black men living with brain injury—and the caregivers who support them. Whether from stroke, accident,
-      illness, Alzheimer's, Parkinson's, or any other cause, your voice matters here.
-    </p>
-    <div class="hero-actions">
-      <a href="/blog" class="btn btn-primary">Read Stories</a>
-      <a href="#signup" class="btn btn-secondary">Join Our Community</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title + ' - ' : '' %>BBBI Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <%- include('./partials/nav') %>
+
+  <main id="main">
+    <!-- Carousel Section -->
+    <section class="carousel" id="heroCarousel" aria-label="Featured content" aria-roledescription="carousel">
+
+  <div class="carousel-track" id="carouselTrack" aria-live="off">
+
+    <!-- Slide 1 -->
+    <div class="carousel-slide active" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3">
+      <div class="carousel-slide-bg" style="background: linear-gradient(150deg, var(--color-primary-dark) 0%, var(--color-primary) 45%, #6B2D2D 100%);"></div>
+      <div class="carousel-slide-content">
+        <span class="carousel-eyebrow">Welcome to BBBI</span>
+        <h1 class="carousel-heading">Your Story Belongs Here</h1>
+        <p class="carousel-body">
+          A warm, affirming community for Black men living with brain injury
+          and the caregivers who walk beside them.
+        </p>
+        <div class="carousel-actions">
+          <a href="/blog" class="btn btn-secondary btn-large">Read Stories</a>
+          <a href="#signup" class="btn btn-outline-light btn-large">Join Our Community</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3" hidden>
+      <div class="carousel-slide-bg" style="background: linear-gradient(150deg, #3A1200 0%, var(--color-secondary) 60%, var(--color-primary) 100%);"></div>
+      <div class="carousel-slide-content">
+        <span class="carousel-eyebrow">For Caregivers</span>
+        <h1 class="carousel-heading">You Are Not Alone</h1>
+        <p class="carousel-body">
+          Stories, resources, and connection for the caregivers supporting
+          our brothers on their journey.
+        </p>
+        <div class="carousel-actions">
+          <a href="/caregivers" class="btn btn-secondary btn-large">Caregiver Stories</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3" hidden>
+      <div class="carousel-slide-bg" style="background: linear-gradient(150deg, #1A0A00 0%, #6B2D2D 50%, var(--color-primary) 100%);"></div>
+      <div class="carousel-slide-content">
+        <span class="carousel-eyebrow">Share Your Voice</span>
+        <h1 class="carousel-heading">Your Resilience Inspires Others</h1>
+        <p class="carousel-body">
+          Post your story and help build a foundation of lived experience
+          that uplifts our entire community.
+        </p>
+        <div class="carousel-actions">
+          <a href="/admin/login" class="btn btn-secondary btn-large">Share a Story</a>
+          <a href="#signup" class="btn btn-outline-light btn-large">Stay Connected</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Carousel controls -->
+  <button class="carousel-btn carousel-btn--prev" id="carouselPrev"
+          aria-label="Previous slide" aria-controls="carouselTrack">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </button>
+  <button class="carousel-btn carousel-btn--next" id="carouselNext"
+          aria-label="Next slide" aria-controls="carouselTrack">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </button>
+
+  <!-- Dots indicator -->
+  <div class="carousel-dots" role="tablist" aria-label="Slide navigation">
+    <button class="carousel-dot active" role="tab" aria-selected="true"
+            aria-label="Slide 1" data-slide="0"></button>
+    <button class="carousel-dot" role="tab" aria-selected="false"
+            aria-label="Slide 2" data-slide="1"></button>
+    <button class="carousel-dot" role="tab" aria-selected="false"
+            aria-label="Slide 3" data-slide="2"></button>
+  </div>
+
+</section>
+
+<!-- CTA Strip Section -->
+<section class="cta-strip" aria-label="Quick actions">
+  <div class="container-wide">
+    <div class="cta-strip-items">
+
+      <a href="/blog" class="cta-strip-item">
+        <span class="cta-strip-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </span>
+        <span class="cta-strip-label">Read Stories</span>
+        <span class="cta-strip-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a href="/caregivers" class="cta-strip-item">
+        <span class="cta-strip-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </span>
+        <span class="cta-strip-label">Caregiver Support</span>
+        <span class="cta-strip-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a href="/admin/login" class="cta-strip-item">
+        <span class="cta-strip-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+          </svg>
+        </span>
+        <span class="cta-strip-label">Share Your Story</span>
+        <span class="cta-strip-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a href="#signup" class="cta-strip-item">
+        <span class="cta-strip-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </span>
+        <span class="cta-strip-label">Join Our Community</span>
+        <span class="cta-strip-arrow" aria-hidden="true">→</span>
+      </a>
+
     </div>
   </div>
 </section>
 
-<!-- Featured Stories -->
+<!-- Featured Stories Section -->
 <% if (featured.length > 0) { %>
 <section class="featured-stories">
-  <div class="container">
-    <h2>Featured Stories</h2>
+  <div class="container-wide">
+    <div class="section-header">
+      <h2>Featured Stories</h2>
+      <p class="section-intro">Inspiring journeys from our community members. Read how others are navigating life with brain injury.</p>
+    </div>
     <div class="posts-grid">
       <% featured.forEach(post => { %>
         <%- include('./partials/post-card', { post }) %>
@@ -31,6 +179,62 @@
   </div>
 </section>
 <% } %>
+
+<!-- Section Separator -->
+<hr class="section-separator">
+
+<!-- CTA Triptych Section -->
+<section class="cta-triptych" aria-label="Ways to get involved">
+  <div class="container-wide">
+    <div class="section-header section-header--center">
+      <h2>Be Part of Something Meaningful</h2>
+    </div>
+    <div class="cta-cards">
+
+      <div class="cta-card">
+        <div class="cta-card-icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <h3>Join Our Community</h3>
+        <p>Receive Zoom meeting links, event updates, and peer support directly to your inbox. No cost, ever.</p>
+        <a href="#signup" class="btn btn-primary">Sign Up Free</a>
+      </div>
+
+      <div class="cta-card cta-card--accent">
+        <div class="cta-card-icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="16"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
+          </svg>
+        </div>
+        <h3>Share Your Story</h3>
+        <p>Your lived experience is powerful. Post a story and help others feel less alone on their journey.</p>
+        <a href="/admin/login" class="btn btn-primary">Post a Story</a>
+      </div>
+
+      <div class="cta-card">
+        <div class="cta-card-icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Caregiver Support</h3>
+        <p>A dedicated space for the family and friends providing care — find community, share resources, and breathe.</p>
+        <a href="/caregivers" class="btn btn-outline">Caregiver Stories</a>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- Sign-up Section -->
 <section id="signup" class="signup-section">
@@ -111,4 +315,11 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
     messageEl.textContent = 'Network error. Please try again.';
   }
 });
-</script>
+    </script>
+  </main>
+
+  <%- include('./partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,5 +1,23 @@
-<div class="container">
-  <h1>Stories & Updates</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title + ' - ' : '' %>BBBI Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <%- include('../partials/nav') %>
+
+  <main id="main">
+    <div class="container">
+      <h1>Stories & Updates</h1>
   <p class="intro-text">
     Discover inspiring stories from our community. Black men and caregivers sharing their journeys,
     insights, and support.
@@ -16,4 +34,11 @@
       <% }); %>
     </div>
   <% } %>
-</div>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

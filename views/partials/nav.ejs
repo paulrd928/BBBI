@@ -1,46 +1,101 @@
-<nav role="navigation" aria-label="Main navigation" class="navbar">
-  <div class="navbar-container">
-    <div class="navbar-brand">
-      <a href="/" class="brand-logo">
-        <span class="brand-text">BBBI</span>
-      </a>
+<nav role="navigation" aria-label="Main navigation" class="navbar navbar--site" id="siteNav">
+
+  <!-- Utility bar -->
+  <div class="utility-bar">
+    <div class="utility-bar-inner">
+      <a href="mailto:hello@bbbi.community" class="utility-link">hello@bbbi.community</a>
+      <a href="#signup" class="utility-link">Join Our Community</a>
     </div>
-
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <ul class="nav-menu" id="navMenu">
-      <li><a href="/">Home</a></li>
-      <li><a href="/blog">Stories</a></li>
-      <li><a href="/caregivers">For Caregivers</a></li>
-      <li><a href="#signup">Sign Up</a></li>
-      <% if (user) { %>
-        <li><a href="/admin/dashboard">Admin</a></li>
-        <li><a href="/admin/logout">Sign Out</a></li>
-      <% } else { %>
-        <li><a href="/admin/login" class="nav-admin">Admin</a></li>
-      <% } %>
-    </ul>
   </div>
+
+  <!-- Main nav bar -->
+  <div class="navbar-main">
+    <div class="navbar-main-inner">
+
+      <!-- Brand -->
+      <div class="navbar-brand">
+        <a href="/" class="brand-logo" aria-label="BBBI Community – home">
+          <span class="brand-text">BBBI</span>
+        </a>
+        <span class="brand-tagline" aria-hidden="true">Black Brain Injury Community</span>
+      </div>
+
+      <!-- Hamburger (mobile only) -->
+      <button class="nav-toggle" id="navToggle"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+              aria-controls="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation menu -->
+      <ul class="nav-menu" id="navMenu" role="menubar">
+
+        <li><a href="/" role="menuitem">Home</a></li>
+
+        <!-- Stories dropdown -->
+        <li class="has-dropdown" id="nav-stories">
+          <a href="/blog" role="menuitem"
+             aria-haspopup="true"
+             aria-expanded="false"
+             id="nav-stories-btn">
+            Stories
+          </a>
+          <div class="dropdown-panel" id="dropdown-stories" role="menu" aria-labelledby="nav-stories-btn">
+            <div class="dropdown-cols">
+              <div class="dropdown-col">
+                <span class="dropdown-heading">Browse Stories</span>
+                <ul>
+                  <li><a href="/blog" role="menuitem">All Stories</a></li>
+                  <li><a href="/caregivers" role="menuitem">Caregiver Stories</a></li>
+                </ul>
+              </div>
+              <div class="dropdown-col">
+                <span class="dropdown-heading">Contribute</span>
+                <ul>
+                  <li><a href="/admin/login" role="menuitem">Share Your Story</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- About dropdown -->
+        <li class="has-dropdown" id="nav-about">
+          <a href="#" role="menuitem"
+             aria-haspopup="true"
+             aria-expanded="false"
+             id="nav-about-btn">
+            About
+          </a>
+          <div class="dropdown-panel" id="dropdown-about" role="menu" aria-labelledby="nav-about-btn">
+            <div class="dropdown-cols">
+              <div class="dropdown-col">
+                <span class="dropdown-heading">Our Community</span>
+                <ul>
+                  <li><a href="/" role="menuitem">Home</a></li>
+                  <li><a href="/caregivers" role="menuitem">For Caregivers</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li><a href="#signup" role="menuitem">Get Involved</a></li>
+
+        <% if (user) { %>
+          <li><a href="/admin/dashboard" role="menuitem">Admin</a></li>
+          <li><a href="/admin/logout" role="menuitem">Sign Out</a></li>
+        <% } else { %>
+          <li>
+            <a href="#signup" class="nav-cta" role="menuitem">Join Us</a>
+          </li>
+        <% } %>
+
+      </ul>
+    </div>
+  </div>
+
 </nav>
-
-<script>
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-
-navToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-  navToggle.classList.toggle('active');
-});
-
-// Close menu when a link is clicked
-navMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navMenu.classList.remove('active');
-    navToggle.classList.remove('active');
-  });
-});
-</script>

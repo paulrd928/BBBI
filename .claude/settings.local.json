@@ -7,7 +7,15 @@
       "Bash(chmod 755:*)",
       "Bash(npm install:*)",
       "Bash(timeout 10 npm run:*)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "Bash(curl:*)",
+      "Bash(lsof:*)",
+      "Bash(npm run:*)",
+      "WebFetch(domain:www.biausa.org)",
+      "WebFetch(domain:biausa.org)",
+      "Bash(pkill -f \"npm run dev\\\\|node server.js\\\\|nodemon\")",
+      "Bash(xargs kill:*)",
+      "Bash(pkill -f \"node server.js\")"
     ]
   }
 }

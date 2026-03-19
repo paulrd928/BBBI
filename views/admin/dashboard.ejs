@@ -1,10 +1,28 @@
-<div class="container">
-  <div class="admin-header">
-    <h1>Admin Dashboard</h1>
-    <form method="GET" action="/admin/logout" style="display: inline;">
-      <button type="submit" class="btn btn-outline">Sign Out</button>
-    </form>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title + ' - ' : '' %>BBBI Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <%- include('../partials/nav') %>
+
+  <main id="main">
+    <div class="container">
+      <div class="admin-header">
+        <h1>Admin Dashboard</h1>
+        <form method="GET" action="/admin/logout" style="display: inline;">
+          <button type="submit" class="btn btn-outline">Sign Out</button>
+        </form>
+      </div>
 
   <div class="admin-stats">
     <div class="stat-card">
@@ -26,14 +44,14 @@
   </div>
 
   <div class="admin-actions">
-    <a href="/blog/admin/new" class="btn btn-primary btn-large">+ Create New Post</a>
+    <a href="/admin/posts/new" class="btn btn-primary btn-large">+ Create New Post</a>
     <a href="/admin/subscribers/export" class="btn btn-secondary">Download Subscriber List</a>
   </div>
 
   <h2>Posts</h2>
 
   <% if (posts.length === 0) { %>
-    <p>No posts yet. <a href="/blog/admin/new">Create one</a>.</p>
+    <p>No posts yet. <a href="/admin/posts/new">Create one</a>.</p>
   <% } else { %>
     <div class="admin-table">
       <table>
@@ -107,3 +125,11 @@ document.querySelectorAll('.delete-post').forEach(btn => {
   });
 });
 </script>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
